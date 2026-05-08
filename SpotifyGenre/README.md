@@ -7,9 +7,9 @@ El modelo predice el género de una canción a partir de sus características ac
 
 ## Integrantes
 
-- Mariana Montoya Sepúlveda  
-- María José Arcila  
-- Sebastián López  
+- Mariana Montoya Sepúlveda
+- María José Arcila
+- Sebastián López
 
 ---
 
@@ -30,7 +30,7 @@ spotify-genre-project/
 
 ---
 
-##  Configuración del entorno
+## Configuración del entorno
 
 ### Requisitos
 
@@ -46,11 +46,13 @@ python -m venv .venv_clean
 ### 2. Activar el entorno
 
 En Windows:
+
 ```bash
 .venv_clean\Scripts\activate
 ```
 
 En Linux/Mac:
+
 ```bash
 source .venv_clean/bin/activate
 ```
@@ -62,7 +64,8 @@ pip install --upgrade pip
 pip install numpy==1.26.4 pandas==2.1.4 scikit-learn==1.4.2 scipy==1.11.4 matplotlib==3.7.5 seaborn==0.13.2 joblib==1.3.2 fastapi uvicorn pyngrok
 ```
 
-> **Nota:** PyCaret solo soporta Python 3.9, 3.10 y 3.11. Si usas Python 3.12, la instalación de PyCaret fallará con un `RuntimeError`. Ver sección [PyCaret](#-pycaret).
+> **Nota:** PyCaret solo soporta Python 3.9, 3.10 y 3.11. Si usas Python 3.12, la instalación de PyCaret fallará con un
+`RuntimeError`. Ver sección [PyCaret](#-pycaret).
 
 ---
 
@@ -82,7 +85,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-##  Exponer la API públicamente con ngrok
+## Exponer la API públicamente con ngrok
 
 Ejecuta en el notebook o en una celda aparte:
 
@@ -96,7 +99,8 @@ print(public_url)
 
 La URL generada tipo `https://xxxx.ngrok-free.dev` permite consumir la API desde cualquier lugar.
 
-> El authtoken lo obtienes desde tu cuenta en [dashboard.ngrok.com](https://dashboard.ngrok.com/get-started/your-authtoken).
+> El authtoken lo obtienes desde tu cuenta
+> en [dashboard.ngrok.com](https://dashboard.ngrok.com/get-started/your-authtoken).
 
 ---
 
@@ -105,14 +109,14 @@ La URL generada tipo `https://xxxx.ngrok-free.dev` permite consumir la API desde
 El dataset `spotify_songs.csv` contiene canciones de Spotify con características acústicas y metadatos.  
 La variable objetivo es `playlist_genre`, que clasifica cada canción en una de las siguientes categorías:
 
-| Género | Descripción |
-|--------|-------------|
+| Género | Descripción            |
+|--------|------------------------|
 | edm    | Electronic Dance Music |
-| latin  | Música latina |
-| pop    | Pop |
-| r&b    | Rhythm and Blues |
-| rap    | Rap / Hip-Hop |
-| rock   | Rock |
+| latin  | Música latina          |
+| pop    | Pop                    |
+| r&b    | Rhythm and Blues       |
+| rap    | Rap / Hip-Hop          |
+| rock   | Rock                   |
 
 ### Variables independientes utilizadas
 
@@ -137,7 +141,7 @@ Se aplicaron los siguientes procesos de limpieza:
 
 ---
 
-##  Análisis Exploratorio
+## Análisis Exploratorio
 
 - Descripción estadística con `.describe()`.
 - Análisis de correlación entre variables numéricas con mapa de calor.
@@ -154,27 +158,30 @@ El escalado de datos se incluyó dentro del `Pipeline` del modelo final.
 
 ---
 
-##  Modelado
+## Modelado
 
 Se evaluaron múltiples algoritmos de clasificación con scikit-learn.  
-El modelo con mejor desempeño fue **GradientBoostingClassifier**, seleccionado con base en las métricas de accuracy, precision, recall y F1-score en el conjunto de prueba.
+El modelo con mejor desempeño fue **GradientBoostingClassifier**, seleccionado con base en las métricas de accuracy,
+precision, recall y F1-score en el conjunto de prueba.
 
 ### Métricas del mejor modelo
 
-| Métrica | Valor |
-|---------|-------|
-| Accuracy | ~0.59 |
+| Métrica              | Valor |
+|----------------------|-------|
+| Accuracy             | ~0.59 |
 | Precision (weighted) | ~0.58 |
-| Recall (weighted) | ~0.59 |
-| F1-score (weighted) | ~0.58 |
+| Recall (weighted)    | ~0.59 |
+| F1-score (weighted)  | ~0.58 |
 
 ---
 
 ## Pipeline (scikit-learn)
 
-Se utilizó la clase `Pipeline` de scikit-learn para encadenar el preprocesamiento (escalado con `StandardScaler`) y el modelo de clasificación en una sola estructura reproducible.
+Se utilizó la clase `Pipeline` de scikit-learn para encadenar el preprocesamiento (escalado con `StandardScaler`) y el
+modelo de clasificación en una sola estructura reproducible.
 
 **Ventajas:**
+
 - Evita inconsistencias entre entrenamiento y predicción.
 - Facilita el despliegue del modelo en producción.
 - Compatible con `cross_val_score` y `GridSearchCV`.
@@ -199,7 +206,7 @@ joblib.dump(pipeline, "models/gb_pipeline.pkl")
 
 ---
 
-##  Ensamble
+## Ensamble
 
 Se implementó un `VotingClassifier` con tres estimadores:
 
@@ -207,13 +214,14 @@ Se implementó un `VotingClassifier` con tres estimadores:
 - `RandomForestClassifier`
 - `DecisionTreeClassifier`
 
-**Resultado:** El ensamble no superó al mejor modelo individual. La regresión logística presentó advertencias de convergencia y el accuracy global del ensamble fue de ~0.44, inferior al obtenido con GradientBoosting.
+**Resultado:** El ensamble no superó al mejor modelo individual. La regresión logística presentó advertencias de
+convergencia y el accuracy global del ensamble fue de ~0.44, inferior al obtenido con GradientBoosting.
 
 **Conclusión:** Se priorizó el modelo individual por su mejor desempeño y mayor estabilidad.
 
 ---
 
-##  FastAPI
+## FastAPI
 
 Se implementó una API REST con FastAPI que expone el modelo entrenado para realizar predicciones en tiempo real.
 
@@ -222,6 +230,7 @@ Se implementó una API REST con FastAPI que expone el modelo entrenado para real
 **POST** `/predict`
 
 **Body de entrada (JSON):**
+
 ```json
 {
   "trackpopularity": 65.0,
@@ -241,6 +250,7 @@ Se implementó una API REST con FastAPI que expone el modelo entrenado para real
 ```
 
 **Respuesta:**
+
 ```json
 {
   "playlistgenre": "pop"
@@ -257,10 +267,11 @@ http://127.0.0.1:8000/docs
 
 ---
 
-##  PyCaret
+## PyCaret
 
 PyCaret fue investigado como herramienta de AutoML para automatizar la comparación de modelos.  
-**No fue posible usarlo en este proyecto** porque la librería soporta oficialmente Python 3.9, 3.10 y 3.11, mientras que el entorno de desarrollo utilizó Python 3.12.
+**No fue posible usarlo en este proyecto** porque la librería soporta oficialmente Python 3.9, 3.10 y 3.11, mientras que
+el entorno de desarrollo utilizó Python 3.12.
 
 Al intentar importar PyCaret, se generó el siguiente error:
 
@@ -268,49 +279,54 @@ Al intentar importar PyCaret, se generó el siguiente error:
 RuntimeError: Pycaret only supports python 3.9, 3.10, 3.11. Please DOWNGRADE your Python version.
 ```
 
-Por esta razón, la comparación de modelos se realizó con scikit-learn, que ofreció compatibilidad completa y mayor control sobre el proceso.
+Por esta razón, la comparación de modelos se realizó con scikit-learn, que ofreció compatibilidad completa y mayor
+control sobre el proceso.
 
 **Referencias:**
-- PyCaret. (2024). *Installation*. https://pycaret.readthedocs.io/en/stable/installation.html  
+
+- PyCaret. (2024). *Installation*. https://pycaret.readthedocs.io/en/stable/installation.html
 - PyCaret. (2024). *PyPI*. https://pypi.org/project/pycaret/
 
 ---
 
 ## Estado del proyecto
 
-| Componente | Estado |
-|------------|--------|
-| Data Cleaning | ✅ Completado |
-| Análisis exploratorio | ✅ Completado |
-| Análisis de correlación | ✅ Completado |
-| Modelado con scikit-learn | ✅ Completado |
-| Matriz de confusión | ✅ Completado |
-| Métricas de efectividad | ✅ Completado |
-| Pipeline | ✅ Completado |
-| Guardado del modelo (joblib) | ✅ Completado |
-| FastAPI (local) | ✅ Completado |
-| FastAPI (público con ngrok) | ✅ Completado |
-| Ensamble (VotingClassifier) | ✅ Completado |
-| PyCaret | ⚠️ Incompatible con Python 3.12 |
-| Ingeniería de características documentada | ⚠️ Pendiente de ampliar |
-| Despliegue permanente en la nube | ⚠️ Pendiente |
+| Componente                                | Estado                          |
+|-------------------------------------------|---------------------------------|
+| Data Cleaning                             | ✅ Completado                    |
+| Análisis exploratorio                     | ✅ Completado                    |
+| Análisis de correlación                   | ✅ Completado                    |
+| Modelado con scikit-learn                 | ✅ Completado                    |
+| Matriz de confusión                       | ✅ Completado                    |
+| Métricas de efectividad                   | ✅ Completado                    |
+| Pipeline                                  | ✅ Completado                    |
+| Guardado del modelo (joblib)              | ✅ Completado                    |
+| FastAPI (local)                           | ✅ Completado                    |
+| FastAPI (público con ngrok)               | ✅ Completado                    |
+| Ensamble (VotingClassifier)               | ✅ Completado                    |
+| PyCaret                                   | ⚠️ Incompatible con Python 3.12 |
+| Ingeniería de características documentada | ⚠️ Pendiente de ampliar         |
+| Despliegue permanente en la nube          | ⚠️ Pendiente                    |
 
 ---
 
 ## ⚠️ Pendientes
 
 - **PyCaret:** Para usarlo correctamente se necesita un entorno con Python 3.10 o 3.11.
-- **Despliegue permanente:** La URL de ngrok es temporal. Para acceso permanente se recomienda desplegar en Render, Railway o Koyeb.
-- **Ingeniería de características:** Se puede explorar la creación de nuevas variables derivadas y técnicas de selección más avanzadas como PCA o SelectKBest.
-- **Ajuste de hiperparámetros:** No se realizó búsqueda sistemática con GridSearchCV o RandomizedSearchCV sobre el modelo final.
+- **Despliegue permanente:** La URL de ngrok es temporal. Para acceso permanente se recomienda desplegar en Render,
+  Railway o Koyeb.
+- **Ingeniería de características:** Se puede explorar la creación de nuevas variables derivadas y técnicas de selección
+  más avanzadas como PCA o SelectKBest.
+- **Ajuste de hiperparámetros:** No se realizó búsqueda sistemática con GridSearchCV o RandomizedSearchCV sobre el
+  modelo final.
 - **Balanceo de clases:** Se puede explorar SMOTE u otras técnicas si el desbalance afecta el rendimiento.
 
 ---
 
 ## 📚 Referencias
 
-- scikit-learn. (s. f.). *Pipeline*. https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html  
-- FastAPI. (s. f.). *Tutorial*. https://fastapi.tiangolo.com/tutorial/  
-- PyCaret. (2024). *Installation*. https://pycaret.readthedocs.io/en/stable/installation.html  
-- PyCaret. (2024). *PyPI*. https://pypi.org/project/pycaret/  
+- scikit-learn. (s. f.). *Pipeline*. https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html
+- FastAPI. (s. f.). *Tutorial*. https://fastapi.tiangolo.com/tutorial/
+- PyCaret. (2024). *Installation*. https://pycaret.readthedocs.io/en/stable/installation.html
+- PyCaret. (2024). *PyPI*. https://pypi.org/project/pycaret/
 - ngrok. (2026). *Using ngrok with FastAPI*. https://ngrok.com/docs/using-ngrok-with/fastAPI
