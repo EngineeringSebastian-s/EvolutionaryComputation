@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class SongInput(BaseModel):
     track_popularity: float
     danceability: float
@@ -14,6 +15,7 @@ class SongInput(BaseModel):
     valence: float
     tempo: float
     duration_ms: float
+
 
 class PredictionOutput(BaseModel):
     playlistgenre: str

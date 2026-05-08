@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # Servicio 1: El Backend (FastAPI)
   spotify-genre-api:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     container_name: spotify-genre-api
@@ -17,7 +17,7 @@ services:
 
   # Servicio 2: El Frontend (Streamlit Dashboard)
   spotify-genre-dashboard:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     container_name: spotify-genre-dashboard
@@ -30,4 +30,4 @@ services:
     depends_on:
       - spotify-genre-api # Espera a que la API esté lista antes de arrancar
     # Sobrescribimos el CMD del Dockerfile para que este contenedor levante Streamlit en vez de FastAPI
-    command: ["streamlit", "run", "app/streamlit_app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+    command: [ "streamlit", "run", "app/streamlit_app.py", "--server.port", "8501", "--server.address", "0.0.0.0" ]
