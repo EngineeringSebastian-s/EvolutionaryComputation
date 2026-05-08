@@ -2,6 +2,7 @@ from pathlib import Path
 
 import joblib
 import pandas as pd
+import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -34,7 +35,7 @@ class SongInput(BaseModel):
 
 @app.get("/")
 def home():
-    from fastapi.responses import RedirectResponse
+    pass
 
 
 @app.get("/")
@@ -47,3 +48,7 @@ def predict(data: SongInput):
     df_input = pd.DataFrame([data.model_dump()])
     pred = model.predict(df_input)[0]
     return {"playlistgenre": pred}
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8000)
