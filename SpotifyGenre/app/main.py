@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
-from app.api.routers import predict_router
+from app.routers import predict_router
 from app.core.logger import get_logger
 
 logger = get_logger(__name__)
