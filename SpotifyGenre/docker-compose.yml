@@ -1,0 +1,13 @@
+services:
+  spotify-genre-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spotify-genre-api
+    restart: unless-stopped
+    ports:
+      - "8013:8000"
+    environment:
+      - ENVIRONMENT=production
+    volumes:
+      - ./logs:/app/logs
