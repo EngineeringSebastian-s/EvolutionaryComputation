@@ -1,2 +1,5 @@
 HousingPrices/.env
 /SpotifyGenre/app/__pycache__
+/SpotifyGenre/app/routers/__pycache__
+/SpotifyGenre/app/schemas/__pycache__
+/SpotifyGenre/app/services/__pycache__
