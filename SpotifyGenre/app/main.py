@@ -1,8 +1,9 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+from pathlib import Path
+
 import joblib
 import pandas as pd
-from pathlib import Path
+from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI(
     title="Spotify Genre Classifier",
@@ -34,6 +35,7 @@ class SongInput(BaseModel):
 @app.get("/")
 def home():
     from fastapi.responses import RedirectResponse
+
 
 @app.get("/")
 def home():
