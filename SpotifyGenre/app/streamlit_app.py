@@ -1,7 +1,8 @@
-import streamlit as st
-import requests
-import time
 import os
+import time
+
+import requests
+import streamlit as st
 
 # Configuración de la página
 st.set_page_config(
