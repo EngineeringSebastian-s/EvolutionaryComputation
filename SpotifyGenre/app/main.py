@@ -18,7 +18,7 @@ model = joblib.load(BASE_DIR.parent / "models" / "gb_pipeline.pkl")
 
 
 class SongInput(BaseModel):
-    trackpopularity: float
+    track_popularity: float
     danceability: float
     energy: float
     key: float
@@ -30,7 +30,7 @@ class SongInput(BaseModel):
     liveness: float
     valence: float
     tempo: float
-    durationms: float
+    duration_ms: float
 
 
 @app.get("/")
