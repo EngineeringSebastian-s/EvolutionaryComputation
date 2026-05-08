@@ -1,54 +1,30 @@
-from pathlib import Path
-
-import joblib
-import pandas as pd
 import uvicorn
 from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi.responses import RedirectResponse
+from app.api.routers import predict_router
+from app.core.logger import get_logger
+
+logger = get_logger(__name__)
 
 app = FastAPI(
     title="Spotify Genre Classifier",
+    description="API estructurada para predicción de géneros musicales",
+    version="1.0.0",
     docs_url="/docs",
-    redoc_url="/redoc",
-    openapi_url="/openapi.json"
+    redoc_url="/redoc"
 )
 
-BASE_DIR = Path(__file__).resolve().parent
-model = joblib.load(BASE_DIR.parent / "models" / "gb_pipeline.pkl")
+# Incluimos los routers
+app.include_router(predict_router.router)
 
+@app.on_event("startup")
+def startup_event():
+    logger.info("Iniciando aplicación Spotify Genre Classifier...")
 
-class SongInput(BaseModel):
-    track_popularity: float
-    danceability: float
-    energy: float
-    key: float
-    loudness: float
-    mode: float
-    speechiness: float
-    acousticness: float
-    instrumentalness: float
-    liveness: float
-    valence: float
-    tempo: float
-    duration_ms: float
-
-
-@app.get("/")
+@app.get("/", include_in_schema=False)
 def home():
-    pass
-
-
-@app.get("/")
-def home():
+    logger.info("Redirigiendo a la documentación...")
     return RedirectResponse(url="/docs")
 
-
-@app.post("/predict")
-def predict(data: SongInput):
-    df_input = pd.DataFrame([data.model_dump()])
-    pred = model.predict(df_input)[0]
-    return {"playlistgenre": pred}
-
-
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
