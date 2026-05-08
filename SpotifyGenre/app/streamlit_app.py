@@ -65,11 +65,9 @@ data = {
     "duration_ms": float(duration_ms)
 }
 
-# --- ÁREA PRINCIPAL (PREDICCIÓN) ---
-# Como Streamlit se recarga de arriba a abajo con cada cambio en los sliders,
-# hacemos la petición automáticamente sin necesidad de un botón.
-
 col1, col2 = st.columns([1, 1])
+
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000/predict")
 
 with col1:
     st.subheader("📡 Conectando con la IA...")
@@ -79,7 +77,7 @@ with col1:
         time.sleep(0.3)  # Pequeña pausa para que se aprecie la animación
         try:
             # Hacer petición a tu FastAPI
-            response = requests.post("http://127.0.0.1:8000/predict", json=data)
+            response = requests.post(API_URL, json=data)
 
             if response.status_code == 200:
                 prediction = response.json().get("playlistgenre", "").lower()
