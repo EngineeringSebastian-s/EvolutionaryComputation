@@ -4,3 +4,4 @@ HousingPrices/.env
 /SpotifyGenre/app/schemas/__pycache__
 /SpotifyGenre/app/services/__pycache__
 /SpotifyGenre/app/core/__pycache__
+RoboFlow/.env
