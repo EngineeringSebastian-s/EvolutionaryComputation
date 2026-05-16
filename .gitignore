@@ -4,5 +4,5 @@ HousingPrices/.env
 /SpotifyGenre/app/schemas/__pycache__
 /SpotifyGenre/app/services/__pycache__
 /SpotifyGenre/app/core/__pycache__
-RoboFlow/.env
-/RoboFlow/data/bccd-1
+ImagesCustomTrainer/.env
+/ImagesCustomTrainer/data/bccd-1
