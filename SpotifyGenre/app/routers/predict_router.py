@@ -1,8 +1,7 @@
-from fastapi import APIRouter, HTTPException
-
 from app.core.logger import get_logger
 from app.schemas.song_schema import SongInput, PredictionOutput
 from app.services.prediction_service import make_prediction
+from fastapi import APIRouter, HTTPException
 
 logger = get_logger(__name__)
 router = APIRouter(prefix="/predict", tags=["Prediction"])
