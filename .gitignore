@@ -7,3 +7,4 @@ HousingPrices/.env
 ImagesCustomTrainer/.env
 /ImagesCustomTrainer/data/bccd-1
 FineTunning/.env
+/FineTunning
