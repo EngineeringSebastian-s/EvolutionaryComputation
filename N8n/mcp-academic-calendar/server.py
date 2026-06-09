@@ -18,7 +18,6 @@ from __future__ import annotations
 import json
 import logging
 import re
-from contextlib import asynccontextmanager
 from typing import Any
 
 import httpx
@@ -65,9 +64,9 @@ log = logging.getLogger("mcp-horarios")
 async def _fetch_html(url: str) -> str:
     """Descarga el HTML de la URL dada de forma asíncrona."""
     async with httpx.AsyncClient(
-        headers=REQUEST_HEADERS,
-        timeout=HTTP_TIMEOUT,
-        follow_redirects=True,
+            headers=REQUEST_HEADERS,
+            timeout=HTTP_TIMEOUT,
+            follow_redirects=True,
     ) as client:
         response = await client.get(url)
         response.raise_for_status()
@@ -125,15 +124,15 @@ def _parse_calendario(html: str) -> list[dict[str, str]]:
             # Sección de eventos (puede haber más de una por item)
             for seccion in item.find_all("div", class_="toggle-seccion"):
                 titulos = seccion.find_all("h4", class_="toggle-seccion__titulo")
-                fechas  = seccion.find_all("p",  class_="toggle-seccion__contenido")
+                fechas = seccion.find_all("p", class_="toggle-seccion__contenido")
 
                 # Emparejar titulo[i] con fecha[i]
                 for titulo, fecha in zip(titulos, fechas):
                     events.append({
-                        "periodo":   periodo_nombre,
+                        "periodo": periodo_nombre,
                         "categoria": categoria,
-                        "evento":    titulo.get_text(strip=True),
-                        "fecha":     fecha.get_text(strip=True),
+                        "evento": titulo.get_text(strip=True),
+                        "fecha": fecha.get_text(strip=True),
                     })
 
     return events
@@ -262,9 +261,9 @@ async def sse_endpoint(request: Request):
     y conecta los streams de lectura/escritura al mcp_server.
     """
     async with sse_transport.connect_sse(
-        request.scope,
-        request.receive,
-        request._send,  # noqa: SLF001
+            request.scope,
+            request.receive,
+            request._send,  # noqa: SLF001
     ) as (read_stream, write_stream):
         await mcp_server.run(
             read_stream,
@@ -281,7 +280,6 @@ app = Starlette(
         Mount("/messages", app=sse_transport.handle_post_message),
     ]
 )
-
 
 # ─────────────────────────────────────────────
 # Punto de entrada directo (desarrollo)
