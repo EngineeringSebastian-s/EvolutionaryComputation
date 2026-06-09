@@ -1,26 +1,26 @@
 :root {
-  /* Colors - Politécnico Jaime Isaza Cadavid */
-  --chat--color-primary: #009045; /* Verde Principal Institucional */
-  --chat--color-primary-shade-50: #007a3a; /* Verde oscuro para hover */
-  --chat--color-primary-shade-100: #006631; /* Verde más oscuro para active */
-  
-  --chat--color-secondary: #1448A5; /* Azul Complementario */
-  --chat--color-secondary-shade-50: #103a84; /* Azul oscuro para hover/active */
-  
-  --chat--color-white: #ffffff;
-  --chat--color-light: #f2f4f8;
-  --chat--color-light-shade-50: #e6e9f1;
-  --chat--color-light-shade-100: #c2c5cc;
-  --chat--color-medium: #d2d4d9;
-  --chat--color-dark: #1a1c23; /* Un tono oscuro más suave que el negro puro para mejor lectura */
-  --chat--color-disabled: #d2d4d9;
-  --chat--color-typing: #009045; /* Indicador de escritura en verde institucional */
+    /* Colors - Politécnico Jaime Isaza Cadavid */
+    --chat--color-primary: #009045; /* Verde Principal Institucional */
+    --chat--color-primary-shade-50: #007a3a; /* Verde oscuro para hover */
+    --chat--color-primary-shade-100: #006631; /* Verde más oscuro para active */
 
-  /* Base Layout */
-  --chat--spacing: 1rem;
-  --chat--border-radius: 0.5rem; /* Ligeramente más redondeado para un look más moderno */
-  --chat--transition-duration: 0.15s;
-  --chat--font-family: (
+    --chat--color-secondary: #1448A5; /* Azul Complementario */
+    --chat--color-secondary-shade-50: #103a84; /* Azul oscuro para hover/active */
+
+    --chat--color-white: #ffffff;
+    --chat--color-light: #f2f4f8;
+    --chat--color-light-shade-50: #e6e9f1;
+    --chat--color-light-shade-100: #c2c5cc;
+    --chat--color-medium: #d2d4d9;
+    --chat--color-dark: #1a1c23; /* Un tono oscuro más suave que el negro puro para mejor lectura */
+    --chat--color-disabled: #d2d4d9;
+    --chat--color-typing: #009045; /* Indicador de escritura en verde institucional */
+
+    /* Base Layout */
+    --chat--spacing: 1rem;
+    --chat--border-radius: 0.5rem; /* Ligeramente más redondeado para un look más moderno */
+    --chat--transition-duration: 0.15s;
+    --chat--font-family: (
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -29,104 +29,103 @@
     Ubuntu,
     Cantarell,
     'Helvetica Neue',
-    sans-serif
-  );
+    sans-serif);
 
-  /* Window Dimensions */
-  --chat--window--width: 400px;
-  --chat--window--height: 600px;
-  --chat--window--bottom: var(--chat--spacing);
-  --chat--window--right: var(--chat--spacing);
-  --chat--window--z-index: 9999;
-  --chat--window--border: 1px solid var(--chat--color-light-shade-50);
-  --chat--window--border-radius: var(--chat--border-radius);
-  --chat--window--margin-bottom: var(--chat--spacing);
+    /* Window Dimensions */
+    --chat--window--width: 400px;
+    --chat--window--height: 600px;
+    --chat--window--bottom: var(--chat--spacing);
+    --chat--window--right: var(--chat--spacing);
+    --chat--window--z-index: 9999;
+    --chat--window--border: 1px solid var(--chat--color-light-shade-50);
+    --chat--window--border-radius: var(--chat--border-radius);
+    --chat--window--margin-bottom: var(--chat--spacing);
 
-  /* Header Styles */
-  --chat--header-height: auto;
-  --chat--header--padding: var(--chat--spacing);
-  --chat--header--background: var(--chat--color-primary); /* Header con identidad visual fuerte */
-  --chat--header--color: var(--chat--color-white);
-  --chat--header--border-top: none;
-  --chat--header--border-bottom: none;
-  --chat--header--border-left: none;
-  --chat--header--border-right: none;
-  --chat--heading--font-size: 1.5em; /* Tamaño ajustado para no saturar el espacio */
-  --chat--subtitle--font-size: inherit;
-  --chat--subtitle--line-height: 1.8;
+    /* Header Styles */
+    --chat--header-height: auto;
+    --chat--header--padding: var(--chat--spacing);
+    --chat--header--background: var(--chat--color-primary); /* Header con identidad visual fuerte */
+    --chat--header--color: var(--chat--color-white);
+    --chat--header--border-top: none;
+    --chat--header--border-bottom: none;
+    --chat--header--border-left: none;
+    --chat--header--border-right: none;
+    --chat--heading--font-size: 1.5em; /* Tamaño ajustado para no saturar el espacio */
+    --chat--subtitle--font-size: inherit;
+    --chat--subtitle--line-height: 1.8;
 
-  /* Message Styles */
-  --chat--message--font-size: 0.95rem;
-  --chat--message--padding: 0.8rem 1rem; /* Padding ajustado para mejor respiro del texto */
-  --chat--message--border-radius: var(--chat--border-radius);
-  --chat--message-line-height: 1.5;
-  --chat--message--margin-bottom: calc(var(--chat--spacing) * 0.8);
-  
-  /* Bot Messages */
-  --chat--message--bot--background: var(--chat--color-white);
-  --chat--message--bot--color: var(--chat--color-dark);
-  --chat--message--bot--border: 1px solid var(--chat--color-light-shade-50); /* Borde sutil para despegar del fondo */
-  
-  /* User Messages */
-  --chat--message--user--background: var(--chat--color-secondary); /* Azul institucional */
-  --chat--message--user--color: var(--chat--color-white);
-  --chat--message--user--border: none;
-  
-  --chat--message--pre--background: rgba(0, 0, 0, 0.05);
-  --chat--messages-list--padding: var(--chat--spacing);
+    /* Message Styles */
+    --chat--message--font-size: 0.95rem;
+    --chat--message--padding: 0.8rem 1rem; /* Padding ajustado para mejor respiro del texto */
+    --chat--message--border-radius: var(--chat--border-radius);
+    --chat--message-line-height: 1.5;
+    --chat--message--margin-bottom: calc(var(--chat--spacing) * 0.8);
 
-  /* Toggle Button */
-  --chat--toggle--size: 64px;
-  --chat--toggle--width: var(--chat--toggle--size);
-  --chat--toggle--height: var(--chat--toggle--size);
-  --chat--toggle--border-radius: 50%;
-  --chat--toggle--background: var(--chat--color-primary);
-  --chat--toggle--hover--background: var(--chat--color-primary-shade-50);
-  --chat--toggle--active--background: var(--chat--color-primary-shade-100);
-  --chat--toggle--color: var(--chat--color-white);
+    /* Bot Messages */
+    --chat--message--bot--background: var(--chat--color-white);
+    --chat--message--bot--color: var(--chat--color-dark);
+    --chat--message--bot--border: 1px solid var(--chat--color-light-shade-50); /* Borde sutil para despegar del fondo */
 
-  /* Input Area */
-  --chat--textarea--height: 50px;
-  --chat--textarea--max-height: 30rem;
-  --chat--input--font-size: inherit;
-  --chat--input--border: 0;
-  --chat--input--border-radius: 0;
-  --chat--input--padding: 1rem;
-  --chat--input--background: var(--chat--color-white);
-  --chat--input--text-color: var(--chat--color-dark);
-  --chat--input--line-height: 1.5;
-  --chat--input--placeholder--font-size: var(--chat--input--font-size);
-  --chat--input--border-active: 0;
-  --chat--input--left--panel--width: 2rem;
+    /* User Messages */
+    --chat--message--user--background: var(--chat--color-secondary); /* Azul institucional */
+    --chat--message--user--color: var(--chat--color-white);
+    --chat--message--user--border: none;
 
-  /* Button Styles */
-  --chat--button--color: var(--chat--color-light);
-  --chat--button--background: var(--chat--color-primary);
-  --chat--button--padding: calc(var(--chat--spacing) * 1 / 2) var(--chat--spacing);
-  --chat--button--border-radius: var(--chat--border-radius);
-  --chat--button--hover--color: var(--chat--color-light);
-  --chat--button--hover--background: var(--chat--color-primary-shade-50);
-  --chat--close--button--color-hover: var(--chat--color-white); /* Mejor contraste en el header */
+    --chat--message--pre--background: rgba(0, 0, 0, 0.05);
+    --chat--messages-list--padding: var(--chat--spacing);
 
-  /* Send and File Buttons */
-  --chat--input--send--button--background: var(--chat--color-white);
-  --chat--input--send--button--color: var(--chat--color-primary); /* Icono de enviar en verde */
-  --chat--input--send--button--background-hover: var(--chat--color-light);
-  --chat--input--send--button--color-hover: var(--chat--color-primary-shade-50);
-  
-  --chat--input--file--button--background: var(--chat--color-white);
-  --chat--input--file--button--color: var(--chat--color-secondary); /* Icono de adjunto en azul */
-  --chat--input--file--button--background-hover: var(--chat--color-light);
-  --chat--input--file--button--color-hover: var(--chat--color-secondary-shade-50);
-  --chat--files-spacing: 0.25rem;
+    /* Toggle Button */
+    --chat--toggle--size: 64px;
+    --chat--toggle--width: var(--chat--toggle--size);
+    --chat--toggle--height: var(--chat--toggle--size);
+    --chat--toggle--border-radius: 50%;
+    --chat--toggle--background: var(--chat--color-primary);
+    --chat--toggle--hover--background: var(--chat--color-primary-shade-50);
+    --chat--toggle--active--background: var(--chat--color-primary-shade-100);
+    --chat--toggle--color: var(--chat--color-white);
 
-  /* Body and Footer */
-  --chat--body--background: var(--chat--color-light);
-  --chat--footer--background: var(--chat--color-white); /* Footer blanco para integrar mejor el área de input */
-  --chat--footer--color: var(--chat--color-dark);
+    /* Input Area */
+    --chat--textarea--height: 50px;
+    --chat--textarea--max-height: 30rem;
+    --chat--input--font-size: inherit;
+    --chat--input--border: 0;
+    --chat--input--border-radius: 0;
+    --chat--input--padding: 1rem;
+    --chat--input--background: var(--chat--color-white);
+    --chat--input--text-color: var(--chat--color-dark);
+    --chat--input--line-height: 1.5;
+    --chat--input--placeholder--font-size: var(--chat--input--font-size);
+    --chat--input--border-active: 0;
+    --chat--input--left--panel--width: 2rem;
+
+    /* Button Styles */
+    --chat--button--color: var(--chat--color-light);
+    --chat--button--background: var(--chat--color-primary);
+    --chat--button--padding: calc(var(--chat--spacing) * 1 / 2) var(--chat--spacing);
+    --chat--button--border-radius: var(--chat--border-radius);
+    --chat--button--hover--color: var(--chat--color-light);
+    --chat--button--hover--background: var(--chat--color-primary-shade-50);
+    --chat--close--button--color-hover: var(--chat--color-white); /* Mejor contraste en el header */
+
+    /* Send and File Buttons */
+    --chat--input--send--button--background: var(--chat--color-white);
+    --chat--input--send--button--color: var(--chat--color-primary); /* Icono de enviar en verde */
+    --chat--input--send--button--background-hover: var(--chat--color-light);
+    --chat--input--send--button--color-hover: var(--chat--color-primary-shade-50);
+
+    --chat--input--file--button--background: var(--chat--color-white);
+    --chat--input--file--button--color: var(--chat--color-secondary); /* Icono de adjunto en azul */
+    --chat--input--file--button--background-hover: var(--chat--color-light);
+    --chat--input--file--button--color-hover: var(--chat--color-secondary-shade-50);
+    --chat--files-spacing: 0.25rem;
+
+    /* Body and Footer */
+    --chat--body--background: var(--chat--color-light);
+    --chat--footer--background: var(--chat--color-white); /* Footer blanco para integrar mejor el área de input */
+    --chat--footer--color: var(--chat--color-dark);
 }
 
 /* Modificación de la estructura general para mejor lectura */
 .chat-message {
-	max-width: 80%; /* Aumentado del 50% al 80% para evitar líneas de texto muy cortas */
+    max-width: 80%; /* Aumentado del 50% al 80% para evitar líneas de texto muy cortas */
 }
