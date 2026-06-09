@@ -68,9 +68,9 @@ log = logging.getLogger("mcp-bienestar")
 async def _fetch_html(url: str) -> str:
     """Descarga el HTML de la URL con httpx de forma completamente asíncrona."""
     async with httpx.AsyncClient(
-        headers=REQUEST_HEADERS,
-        timeout=HTTP_TIMEOUT,
-        follow_redirects=True,
+            headers=REQUEST_HEADERS,
+            timeout=HTTP_TIMEOUT,
+            follow_redirects=True,
     ) as client:
         response = await client.get(url)
         response.raise_for_status()
@@ -266,7 +266,7 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[TextContent]:
             sections = [
                 s for s in sections
                 if keyword in s["seccion"].lower()
-                or keyword in s["contenido"].lower()
+                   or keyword in s["contenido"].lower()
             ]
             log.info(
                 "Filtro '%s' aplicado: %d sección(es) encontradas.",
@@ -301,9 +301,9 @@ async def sse_endpoint(request: Request):
     El SDK devuelve una respuesta SSE y conecta los streams al mcp_server.
     """
     async with sse_transport.connect_sse(
-        request.scope,
-        request.receive,
-        request._send,  # noqa: SLF001
+            request.scope,
+            request.receive,
+            request._send,  # noqa: SLF001
     ) as (read_stream, write_stream):
         await mcp_server.run(
             read_stream,
@@ -319,7 +319,6 @@ app = Starlette(
     ]
 )
 
-
 # ─────────────────────────────────────────────────────────────────────────────
 # Punto de entrada (modo desarrollo)
 # ─────────────────────────────────────────────────────────────────────────────
@@ -329,6 +328,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "server_bienestar:app",
         host="0.0.0.0",
-        port=8081,          # puerto distinto al servidor de horarios (8080)
+        port=8081,  # puerto distinto al servidor de horarios (8080)
         log_level="info",
     )
