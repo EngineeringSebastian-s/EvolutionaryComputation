@@ -1,0 +1,228 @@
+{
+  "name": "PoliMente – Asistente Inteligente Politécnico JIC",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "¡Hola! 👋 Soy **POLI-Mente**, tu asistente académico del Politécnico Colombiano Jaime Isaza Cadavid.\n\nPuedo ayudarte con:\n📚 Consultas al fondo bibliográfico digital\n🗓️ Horarios de clases, salones y docentes\n🎓 Becas, créditos educativos y servicios de bienestar\n\nCuéntame tu nombre y tu programa académico, y dime en qué puedo orientarte hoy.",
+        "options": {
+          "title": "POLI-Mente · Asistente Académico",
+          "subtitle": "Politécnico Colombiano Jaime Isaza Cadavid",
+          "inputPlaceholder": "Escribe tu consulta aquí…",
+          "loadPreviousSession": "memory",
+          "customCss": ":root {\n  /* ── Paleta institucional Politécnico Jaime Isaza Cadavid ── */\n  --poli-verde:        #009045;\n  --poli-verde-dark:   #007a3a;\n  --poli-verde-darker: #006631;\n  --poli-azul:         #1448A5;\n  --poli-azul-dark:    #103a84;\n  --poli-blanco:       #ffffff;\n  --poli-gris-claro:   #f2f4f8;\n  --poli-gris-medio:   #e6e9f1;\n  --poli-gris-100:     #c2c5cc;\n  --poli-texto:        #1a1c23;\n\n  /* ── Variables del chat engine (n8n) ── */\n  --chat--color-primary:            var(--poli-verde);\n  --chat--color-primary-shade-50:   var(--poli-verde-dark);\n  --chat--color-primary-shade-100:  var(--poli-verde-darker);\n  --chat--color-secondary:          var(--poli-azul);\n  --chat--color-secondary-shade-50: var(--poli-azul-dark);\n  --chat--color-white:              var(--poli-blanco);\n  --chat--color-light:              var(--poli-gris-claro);\n  --chat--color-light-shade-50:     var(--poli-gris-medio);\n  --chat--color-light-shade-100:    var(--poli-gris-100);\n  --chat--color-medium:             #d2d4d9;\n  --chat--color-dark:               var(--poli-texto);\n  --chat--color-disabled:           #d2d4d9;\n  --chat--color-typing:             var(--poli-verde);\n\n  /* ── Layout ── */\n  --chat--spacing:            1rem;\n  --chat--border-radius:      0.625rem;\n  --chat--transition-duration: 0.16s;\n  --chat--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n\n  /* ── Ventana ── */\n  --chat--window--width:         420px;\n  --chat--window--height:        640px;\n  --chat--window--bottom:        var(--chat--spacing);\n  --chat--window--right:         var(--chat--spacing);\n  --chat--window--z-index:       9999;\n  --chat--window--border:        1px solid var(--poli-gris-medio);\n  --chat--window--border-radius: var(--chat--border-radius);\n\n  /* ── Header ── */\n  --chat--header-height:         auto;\n  --chat--header--padding:       var(--chat--spacing) 1.25rem;\n  --chat--header--background:    linear-gradient(135deg, var(--poli-verde-darker) 0%, var(--poli-verde) 55%, var(--poli-verde-dark) 100%);\n  --chat--header--color:         var(--poli-blanco);\n  --chat--header--border-top:    none;\n  --chat--header--border-bottom: 3px solid var(--poli-azul);\n  --chat--header--border-left:   none;\n  --chat--header--border-right:  none;\n  --chat--heading--font-size:    1.15em;\n  --chat--subtitle--font-size:   0.85rem;\n  --chat--subtitle--line-height: 1.7;\n\n  /* ── Mensajes ── */\n  --chat--message--font-size:    0.95rem;\n  --chat--message--padding:      0.75rem 1rem;\n  --chat--message--border-radius: var(--chat--border-radius);\n  --chat--message-line-height:   1.55;\n  --chat--message--margin-bottom: 0.75rem;\n\n  /* Bot */\n  --chat--message--bot--background: var(--poli-blanco);\n  --chat--message--bot--color:      var(--poli-texto);\n  --chat--message--bot--border:     1px solid var(--poli-gris-medio);\n\n  /* Usuario */\n  --chat--message--user--background: var(--poli-azul);\n  --chat--message--user--color:      var(--poli-blanco);\n  --chat--message--user--border:     none;\n\n  --chat--message--pre--background: rgba(0,0,0,0.05);\n  --chat--messages-list--padding:    var(--chat--spacing);\n\n  /* ── Toggle flotante ── */\n  --chat--toggle--size:               62px;\n  --chat--toggle--width:              var(--chat--toggle--size);\n  --chat--toggle--height:             var(--chat--toggle--size);\n  --chat--toggle--border-radius:      50%;\n  --chat--toggle--background:         var(--poli-verde);\n  --chat--toggle--hover--background:  var(--poli-verde-dark);\n  --chat--toggle--active--background: var(--poli-verde-darker);\n  --chat--toggle--color:              var(--poli-blanco);\n\n  /* ── Input ── */\n  --chat--textarea--height:            52px;\n  --chat--textarea--max-height:        28rem;\n  --chat--input--font-size:            inherit;\n  --chat--input--border:               0;\n  --chat--input--border-radius:        0;\n  --chat--input--padding:              1rem;\n  --chat--input--background:           var(--poli-blanco);\n  --chat--input--text-color:           var(--poli-texto);\n  --chat--input--line-height:          1.5;\n  --chat--input--border-active:        0;\n  --chat--input--left--panel--width:   2rem;\n\n  /* ── Botones ── */\n  --chat--button--color:             var(--poli-gris-claro);\n  --chat--button--background:        var(--poli-verde);\n  --chat--button--padding:           0.5rem 1rem;\n  --chat--button--border-radius:     var(--chat--border-radius);\n  --chat--button--hover--color:      var(--poli-gris-claro);\n  --chat--button--hover--background: var(--poli-verde-dark);\n  --chat--close--button--color-hover: var(--poli-blanco);\n\n  /* Enviar */\n  --chat--input--send--button--background:       var(--poli-blanco);\n  --chat--input--send--button--color:            var(--poli-verde);\n  --chat--input--send--button--background-hover: var(--poli-gris-claro);\n  --chat--input--send--button--color-hover:      var(--poli-verde-dark);\n\n  /* Adjunto */\n  --chat--input--file--button--background:       var(--poli-blanco);\n  --chat--input--file--button--color:            var(--poli-azul);\n  --chat--input--file--button--background-hover: var(--poli-gris-claro);\n  --chat--input--file--button--color-hover:      var(--poli-azul-dark);\n  --chat--files-spacing: 0.25rem;\n\n  /* ── Cuerpo y footer ── */\n  --chat--body--background:   var(--poli-gris-claro);\n  --chat--footer--background: var(--poli-blanco);\n  --chat--footer--color:      var(--poli-texto);\n}\n\n/* Ancho máximo del globo de mensaje */\n.chat-message {\n  max-width: 80%;\n}\n\n/* Acento verde en mensajes del bot */\n.chat-message.from-bot,\n.chat-message.bot,\n.chat-message.from-assistant {\n  border-left: 3px solid var(--poli-verde) !important;\n}\n\n/* Responsive mobile */\n@media (max-width: 768px) {\n  :root {\n    --chat--window--width:  100vw;\n    --chat--window--height: 100dvh;\n  }\n  .chat-window {\n    border-radius: 0 !important;\n    border: none !important;\n  }\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d13574ea-7163-4766-b99c-f315b2e0bed9",
+      "name": "Chat Trigger – POLI-Mente",
+      "webhookId": "b074bd29-088d-46b1-96c8-e95d74622933"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "<identidad>\nSoy POLI-Mente, el asistente inteligente del Politécnico Colombiano Jaime Isaza Cadavid. Mi propósito es acompañarte en tu vida universitaria: desde resolver dudas académicas y orientarte en trámites institucionales, hasta ayudarte a gestionar tus horarios, explorar el acervo bibliográfico digital y acceder a servicios de bienestar estudiantil.\n</identidad>\n\n<tono_y_estilo>\n- Soy cercano, empático y profesional: hablo contigo como un asesor experimentado que conoce la institución por dentro.\n- Me expreso en español neutro, claro y directo. Evito la jerga burocrática y el relleno motivacional.\n- Si una respuesta requiere pasos, los enumero. Si requiere comparación, uso criterios ordenados.\n- Nunca invento información. Cuando algo escapa a mis fuentes verificadas, lo digo con honestidad y te dirijo al canal oficial correspondiente.\n- No repito elogios vacíos. Mi objetivo es darte la respuesta más útil en el menor tiempo posible.\n</tono_y_estilo>\n\n<saludo_inicial>\nEn la primera interacción, me presento brevemente y pregunto tu nombre y programa académico (si no los conozco), pero solo si la pregunta del usuario no es urgente. Si ya hizo una pregunta concreta, respondo primero y pregunto el nombre después, de forma natural.\n</saludo_inicial>\n\n<herramientas_disponibles>\nCuento con tres servicios especializados para enriquecer mis respuestas:\n\n1. **Sistema de Biblioteca Digital (MCP Biblioteca)**\n   - Úsalo cuando el usuario pregunte por libros, revistas, bases de datos, recursos electrónicos, préstamos o reservas del fondo bibliográfico institucional.\n   - Devuelve título, autor, disponibilidad, ubicación en estantería y enlace de acceso si aplica.\n   - NO lo uses para horarios, noticias o eventos.\n\n2. **Microservicio de Horarios Académicos (MCP Horarios)**\n   - Úsalo cuando el usuario pregunte por horarios de clases, salones, profesores, grupos o períodos académicos.\n   - Entrega información de facultad, programa, semestre, bloque, aula y docente responsable.\n   - NO lo uses para temas bibliográficos o de bienestar.\n\n3. **Simulador de Créditos y Bienestar Estudiantil (MCP Bienestar)**\n   - Úsalo cuando el usuario pregunte por becas, descuentos de matrícula, créditos educativos, subsidios, apoyos de bienestar, servicios de salud o deporte.\n   - Devuelve requisitos, montos, fechas de convocatoria y enlace al formulario.\n   - NO lo uses para horarios ni búsquedas bibliográficas.\n</herramientas_disponibles>\n\n<flujo_de_decision>\n1. Comprender con precisión qué necesita el usuario.\n2. Determinar si la consulta corresponde a Biblioteca, Horarios o Bienestar.\n3. Invocar la herramienta adecuada con los parámetros correctos.\n4. Si ninguna herramienta aplica, responder desde mi base de conocimiento institucional.\n5. Si la información es insuficiente o incierta, indicarlo con claridad y orientar al canal oficial.\n6. Cerrar la respuesta de forma concisa, sin frases decorativas.\n</flujo_de_decision>\n\n<reglas_criticas>\n- NUNCA uses una herramienta para un dominio que no le corresponde.\n- NUNCA presentes suposiciones como hechos verificados.\n- NUNCA copies textualmente información sin indicar la fuente.\n- Si el usuario expresa frustración o confusión, valida su experiencia antes de dar la solución.\n- Mantén la coherencia durante toda la conversación; si el usuario ya compartió su nombre o programa, úsalos de forma natural.\n</reglas_criticas>\n\n<informacion_institucional_base>\n- Sede principal Medellín: Carrera 48 No. 7-151, El Poblado.\n- Centro de Prácticas Bello: Carrera 58 # 27B-125, Barrio Las Cabañas.\n- Núcleo Niquía: Bello, Antioquia.\n- Línea de atención: (604) 350 8400.\n- Portal web: https://www.elpoli.edu.co\n</informacion_institucional_base>",
+          "maxIterations": 5,
+          "returnIntermediateSteps": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        480,
+        0
+      ],
+      "id": "34763869-b7d4-495e-86ae-e568d9e0958e",
+      "name": "Agente IA – POLI-Mente"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-sonnet-4-6",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 4.6"
+        },
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        224,
+        224
+      ],
+      "id": "a4bd0ab3-f756-49bf-8846-d0a2d4875f7d",
+      "name": "Anthropic Claude – Sonnet 4.6",
+      "credentials": {
+        "anthropicApi": {
+          "id": "5DqcyZDRV2j4tQWL",
+          "name": "Anthropic account UAN"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 12
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        384,
+        224
+      ],
+      "id": "2a839d95-f303-4b2c-9231-1552eded3e42",
+      "name": "Memoria de Conversación"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Consulta el Sistema de Biblioteca Digital del Politécnico Jaime Isaza Cadavid. Úsalo cuando el usuario pregunte por libros, revistas académicas, bases de datos, recursos electrónicos, disponibilidad de ejemplares, renovación de préstamos o reserva de material bibliográfico institucional. Devuelve: título, autor, año, disponibilidad, ubicación en estantería y URL de acceso si existe.",
+        "endpointUrl": "https://n8n.adcom.group/mcp/biblioteca-digital/sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        544,
+        224
+      ],
+      "id": "d1a6be23-3b3e-4c23-9d8e-fffe9b8adeeb",
+      "name": "MCP – Biblioteca Digital Poli"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Consulta el Microservicio de Horarios Académicos del Politécnico Jaime Isaza Cadavid. Úsalo cuando el usuario pregunte por horarios de clases, disponibilidad de salones, grupos asignados, docentes responsables de una asignatura, bloques horarios o información del período académico vigente. Recibe: programa, semestre, asignatura o código de grupo. Devuelve: facultad, programa, semestre, asignatura, grupo, bloque, aula, docente y jornada.",
+        "endpointUrl": "https://n8n.adcom.group/mcp/horarios-academicos/sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        704,
+        224
+      ],
+      "id": "855911f7-7447-4bad-a0c2-1b89c4f27fa0",
+      "name": "MCP – Horarios Académicos Poli"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Consulta el Simulador de Créditos y Bienestar Estudiantil del Politécnico Jaime Isaza Cadavid. Úsalo cuando el usuario pregunte por becas, descuentos de matrícula, créditos educativos (ICETEX, fondos institucionales), subsidios de alimentación o transporte, apoyos económicos, servicios de salud estudiantil, actividades deportivas, culturales o psicológicas de bienestar universitario. Recibe: tipo de apoyo solicitado y estrato/condición socioeconómica si se menciona. Devuelve: nombre del programa, requisitos, monto o beneficio, fechas de convocatoria y enlace al formulario.",
+        "endpointUrl": "https://n8n.adcom.group/mcp/bienestar-estudiantil/sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        864,
+        224
+      ],
+      "id": "2bc04b17-e275-4caf-9c08-5d9d382a3309",
+      "name": "MCP – Bienestar Estudiantil Poli"
+    }
+  ],
+  "connections": {
+    "Chat Trigger – POLI-Mente": {
+      "main": [
+        [
+          {
+            "node": "Agente IA – POLI-Mente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Claude – Sonnet 4.6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente IA – POLI-Mente",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memoria de Conversación": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente IA – POLI-Mente",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP – Biblioteca Digital Poli": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA – POLI-Mente",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP – Horarios Académicos Poli": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA – POLI-Mente",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP – Bienestar Estudiantil Poli": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA – POLI-Mente",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "a6207ec3-19a0-4f75-9304-675a3a192fd2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "800e6cca438a33b580827b59e4ca73647e6a6abd40db5b433b17fcdf8aec6a18"
+  },
+  "nodeGroups": [],
+  "id": "11ccda88-f2ec-4a5e-832b-d1d151e9dbdc",
+  "tags": [
+    {
+      "id": "b67ab7f0-74df-42a7-af8d-d57766f4fbc0",
+      "name": "Actividad 05"
+    },
+    {
+      "id": "2708338c-219a-4306-844a-124fd586a79c",
+      "name": "MCP"
+    },
+    {
+      "id": "e8e7f5b1-d9cb-4407-9091-2151b2e17501",
+      "name": "PoliJIC"
+    }
+  ]
+}
