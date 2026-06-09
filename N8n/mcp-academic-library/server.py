@@ -33,7 +33,7 @@ from starlette.routing import Mount, Route
 # ─────────────────────────────────────────────────────────────────────────────
 
 BIBLIOTECA_URL = "https://www.politecnicojic.edu.co/servicos-biblioteca"
-BASE_DOMAIN    = "https://www.politecnicojic.edu.co"
+BASE_DOMAIN = "https://www.politecnicojic.edu.co"
 
 HTTP_TIMEOUT = httpx.Timeout(timeout=20.0)
 
@@ -61,9 +61,9 @@ log = logging.getLogger("mcp-biblioteca")
 async def _fetch_html(url: str) -> str:
     """Descarga el HTML con httpx de forma asíncrona."""
     async with httpx.AsyncClient(
-        headers=REQUEST_HEADERS,
-        timeout=HTTP_TIMEOUT,
-        follow_redirects=True,
+            headers=REQUEST_HEADERS,
+            timeout=HTTP_TIMEOUT,
+            follow_redirects=True,
     ) as client:
         response = await client.get(url)
         response.raise_for_status()
@@ -297,7 +297,7 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[TextContent]:
             services = [
                 s for s in services
                 if keyword in s["servicio"].lower()
-                or keyword in s["descripcion"].lower()
+                   or keyword in s["descripcion"].lower()
             ]
             log.info(
                 "Filtro '%s' aplicado: %d servicio(s) encontrados.",
@@ -332,9 +332,9 @@ async def sse_endpoint(request: Request):
     El SDK gestiona el handshake y conecta los streams al mcp_server.
     """
     async with sse_transport.connect_sse(
-        request.scope,
-        request.receive,
-        request._send,  # noqa: SLF001
+            request.scope,
+            request.receive,
+            request._send,  # noqa: SLF001
     ) as (read_stream, write_stream):
         await mcp_server.run(
             read_stream,
@@ -350,7 +350,6 @@ app = Starlette(
     ]
 )
 
-
 # ─────────────────────────────────────────────────────────────────────────────
 # Punto de entrada (modo desarrollo)
 # ─────────────────────────────────────────────────────────────────────────────
@@ -360,6 +359,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "server_biblioteca:app",
         host="0.0.0.0",
-        port=8082,   # puerto distinto a horarios (8080) y bienestar (8081)
+        port=8082,  # puerto distinto a horarios (8080) y bienestar (8081)
         log_level="info",
     )
